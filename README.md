@@ -1,5 +1,5 @@
 # GRUPO 12
-Repositorio del Proyecto Grupo 12 Profesor Ricardo salas Paralelo 201
+Repositorio del Proyecto Grupo 12 Profesor Ricardo Salas Paralelo 201
 
 * 
 * Integrante 3 - 202230533-9
