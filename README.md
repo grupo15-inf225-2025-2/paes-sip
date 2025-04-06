@@ -1,10 +1,10 @@
 # GRUPO 12
 Repositorio del Proyecto Grupo 12 Profesor Ricardo Salas Paralelo 201
 
-* 
 * Integrante 3 - 202230533-9
 * Nicolás Muñoz - 202104641-0
 * Claudio Carreño - 202173562-3
+* Sebastián Vicuña - 202230561-4
 * **Tutor** FELIPE IGNACIO FERNÁNDEZ AGUILAR
 
 ## Wiki
