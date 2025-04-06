@@ -1,6 +1,6 @@
 # GRUPO 12
-Proyecto Grupo 12 Profesor Ricardo salas Paralelo 201
-*
+Repositorio del Proyecto Grupo 12 Profesor Ricardo salas Paralelo 201
+
 * 
 * Integrante 3 - 202230533-9
 * Nicolás Muñoz - 202104641-0
@@ -8,7 +8,7 @@ Proyecto Grupo 12 Profesor Ricardo salas Paralelo 201
 * **Tutor** FELIPE IGNACIO FERNÁNDEZ AGUILAR
 
 ## Wiki
-
+* Puede acceder a la Wiki mediante el siguiente enlace
 ## Videos
 * Video presentación cliente: https://aula.usm.cl/pluginfile.php/6994529/mod_resource/content/1/video1943571039.mp4
 
