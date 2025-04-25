@@ -26,7 +26,7 @@ Nuestro proyecto está siendo desarrollado con [Vite](https://vitejs.dev/)
 
 2. Ubica la carpeta en la terminal
     ```bash
-   cd ./GitHub/GRUPO12-2025-PROYINF/Proyecto
+   cd ./GRUPO12-2025-PROYINF/Proyecto
 
 3. Instala los repositorios necesarios de npm
     ```bash
