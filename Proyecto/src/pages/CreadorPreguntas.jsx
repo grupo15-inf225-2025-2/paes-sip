@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import './App1.css';
+import '../assets/css/CreadorPreguntas.css';
 
-function App1() {
+export default function CreadorPreguntas() {
   const [filters, setFilters] = useState({
     subject: '',
     thematicAxis: '',
@@ -179,36 +179,38 @@ function App1() {
         </div>
       </div>
       <div className="questions-section">
-        <h2>Preguntas Disponibles ({filteredQuestions.length})</h2>
-        <div className="questions-grid">
-          {filteredQuestions.map(question => (
-            <div key={question.id} className="question-card">
-              <div className="question-header">
-                <span className="subject-badge">{question.subject}</span>
-                <span className="points-badge">{question.points} pts</span>
-              </div>
-              <h3>{question.question}</h3>
-              <ul className="options-list">
-                {question.options.map((option, index) => (
-                  <li 
-                    key={index}
-                    className={index === question.correctAnswer ? 'correct-option' : ''}
+        <div className='filters-section'>
+          <h2>Preguntas Disponibles ({filteredQuestions.length})</h2>
+          <div className="questions-grid">
+            {filteredQuestions.map(question => (
+              <div key={question.id} className="question-card">
+                <div className="question-header">
+                  <span className="subject-badge">{question.subject}</span>
+                  <span className="points-badge">{question.points} pts</span>
+                </div>
+                <h3>{question.question}</h3>
+                <ul className="options-list">
+                  {question.options.map((option, index) => (
+                    <li 
+                      key={index}
+                      className={index === question.correctAnswer ? 'correct-option' : ''}
+                    >
+                      {option}
+                    </li>
+                  ))}
+                </ul>
+                <div className="question-footer">
+                  <span className="skill-tag">{question.skill}</span>
+                  <button 
+                    onClick={() => addQuestionToTest(question.id)}
+                    disabled={newTest.questions.includes(question.id)}
                   >
-                    {option}
-                  </li>
-                ))}
-              </ul>
-              <div className="question-footer">
-                <span className="skill-tag">{question.skill}</span>
-                <button 
-                  onClick={() => addQuestionToTest(question.id)}
-                  disabled={newTest.questions.includes(question.id)}
-                >
-                  {newTest.questions.includes(question.id) ? '✓ Agregada' : 'Agregar al ensayo'}
-                </button>
+                    {newTest.questions.includes(question.id) ? '✓ Agregada' : 'Agregar al ensayo'}
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
       <div className="test-section">
@@ -278,4 +280,3 @@ function App1() {
   );
 }
 
-export default App1;
