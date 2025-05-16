@@ -18,8 +18,8 @@ Nuestro proyecto está siendo desarrollado con [Vite](https://vitejs.dev/)
 
 ### Prerrequisitos
 - [Node.js](https://nodejs.org/) (v18+ recomendado) Hay que instalarlo en la pagina web o por comando, favor de seguir instrucciones de la pagina.
-- [Docker]((https://www.docker.com)) Se requiere para el funcionamiento de la base de datos y la pagina.
-- [pgAdmin]((https://www.pgadmin.org)) Se requiere para la gestión de la base de datos.
+- [Docker](https://www.docker.com) Se requiere para el funcionamiento de la base de datos y la pagina.
+- [pgAdmin](https://www.pgadmin.org) Se requiere para la gestión de la base de datos.
 
 ### Instalación
 1. Clona el repositorio
