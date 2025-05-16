@@ -18,6 +18,8 @@ Nuestro proyecto está siendo desarrollado con [Vite](https://vitejs.dev/)
 
 ### Prerrequisitos
 - [Node.js](https://nodejs.org/) (v18+ recomendado) Hay que instalarlo en la pagina web o por comando, favor de seguir instrucciones de la pagina.
+- [Docker]((https://www.docker.com)) Se requiere para el funcionamiento de la base de datos y la pagina.
+- [pgAdmin]((https://www.pgadmin.org)) Se requiere para la gestión de la base de datos.
 
 ### Instalación
 1. Clona el repositorio
@@ -28,12 +30,11 @@ Nuestro proyecto está siendo desarrollado con [Vite](https://vitejs.dev/)
     ```bash
    cd ./GRUPO12-2025-PROYINF/Proyecto
 
-3. Instala los repositorios necesarios de npm
+3. Ejecuta el makefile
     ```bash
-   npm install
+    make build
+    make run
+    make run-db
+    
+4. Siga las Instrucciones de la terminal
 
-4. Activa el proyecto con npm
-    ```bash
-   npm run dev
-
-5. En el navegador poner el enlace que dara la terminal
