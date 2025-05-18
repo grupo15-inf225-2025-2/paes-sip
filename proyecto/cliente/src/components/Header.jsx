@@ -7,35 +7,55 @@ export default function Header() {
 
   return (
     <header>
-      <div className="pedro">
-        <img src={logo} style={{ marginRight: "auto", width: "80px", height: "80px" }} onClick={() => navigate("/")} />
-        <button>
-          Usuario
-        </button>
-        <button>
-          Cerrar sesión
-        </button>
+      <div>
+        <section className="header-nav">
+          <div className="logo" onClick={() => navigate("/")}>
+            <img src={logo} alt="Logo" />
+            <span style={{ fontWeight: 'bold' }}>EduPAES</span>
+          </div>
+          <div className="user-controls">
+            <button className="nav-link">
+              Usuario
+            </button>
+            <button className="nav-link">
+              Cerrar sesión
+            </button>
+          </div>
+        </section>
       </div>
-      <nav>
-        <button
-          onClick={() => navigate("/bancopreguntas")}
-          activate="arreglar despues"
-        >
-          Banco de Preguntas
-        </button>
-        <button
-          onClick={() => navigate("/creadorpreguntas")}
-          activate="arreglar despues"
-        >
-          Creador de Preguntas
-        </button>
-        <button
-          onClick={() => navigate("/ensayo/:id")}
-          activate="arreglar despues"
-        >
-          Ensayos
-        </button>
+
+      <nav className="navbar">
+        <div className="bottom-nav">
+          <div className="menu-items">
+            <button
+              onClick={() => navigate("/bancopreguntas")}
+              className="nav-link"
+            >
+              Banco de Preguntas
+            </button>
+            <button
+              onClick={() => navigate("/creadorpreguntas")}
+              className="nav-link"
+            >
+              Creador de Preguntas
+            </button>
+            <button
+              onClick={() => navigate("/ResultadosEst")}
+              className="nav-link"
+            >
+              Tu Progreso
+            </button>
+            <button
+              onClick={() => navigate("/ensayo/:id")}
+              className="nav-link"
+            >
+              Ensayos
+            </button>
+          </div>
+        </div>
+
+
       </nav>
-    </header>
+    </header >
   )
 }

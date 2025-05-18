@@ -88,7 +88,7 @@ export default function Ensayos() {
                         </li>
                     ))}
                     <li>
-                        <a href="#" title="Información" aria-label="Información de sección">ℹ️</a>
+                        <a href="#" title="Información" aria-label="Información de sección">ℹ</a>
                     </li>
                 </ul>
             </nav>
@@ -140,16 +140,16 @@ export default function Ensayos() {
                     onClick={prevQuestion}
                     disabled={activeQuestion === 0}
                 >
-                    Volver a revisar
-                    <span className="btn-icon">◀️</span>
+                    Pregunta anterior
+                    <span className="btn-icon"></span>
                 </button>
                 <button
                     className="btn btn-primary"
                     onClick={nextQuestion}
                     disabled={activeQuestion === questions.length - 1}
                 >
-                    Siguiente
-                    <span className="btn-icon">▶️</span>
+                    Siguiente pregunta
+                    <span className="btn-icon"></span>
                 </button>
             </footer>
         </div></>

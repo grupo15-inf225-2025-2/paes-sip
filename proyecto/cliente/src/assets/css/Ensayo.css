@@ -1,9 +1,9 @@
 :root {
     --primary-color: #1976d2;
     --hover-color: #1565c0;
-    --background-color: #f5f5f5;
+    --background-color: #e2e2e2;
     --text-color: #333;
-    --border-color: #ddd;
+    --border-color: #9b9b9b;
 }
 
 body {
@@ -15,9 +15,8 @@ body {
 }
 
 .container {
-    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 80px 20px;
 }
 
 /* Estilos del temporizador */
@@ -28,6 +27,7 @@ body {
     border-radius: 5px;
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: black;
 }
 
 .timer-icon {
@@ -65,8 +65,8 @@ body {
     line-height: 35px;
     text-align: center;
     border-radius: 50%;
-    background-color: white;
-    color: var(--text-color);
+    background-color: #1976d2;
+    color: rgba(255, 255, 255, 0.93261);
     text-decoration: none;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -80,7 +80,7 @@ body {
 .questions-nav a.active::after {
     content: "Actual";
     position: absolute;
-    top: 100%;
+    top: 70%;
     left: 50%;
     transform: translateX(-50%);
     font-size: 10px;
@@ -90,7 +90,7 @@ body {
 
 /* Estilos de la pregunta */
 .question-container {
-    background-color: white;
+    background-color: #52b8f3cc;
     border-radius: 8px;
     padding: 20px;
     margin: 20px 0;
@@ -112,12 +112,18 @@ body {
 
 .question-content {
     margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.897);
 }
 
 /* Estilos de las opciones */
 .options-list {
     list-style: none;
     padding: 0;
+    color: rgba(0, 0, 0, 0.918);
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .option-item {
@@ -133,7 +139,6 @@ body {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background-color: #f0f0f0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -155,9 +160,10 @@ body {
     align-items: center;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid var(--border-color);
+    border: 1.3px solid black;
     cursor: pointer;
     transition: all 0.3s ease;
+
 }
 
 .option-custom-radio:hover {
@@ -175,7 +181,7 @@ body {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: var(--primary-color);
+    background-color: black;
     top: 50%;
     left: 16px;
     transform: translateY(-50%);
@@ -185,13 +191,13 @@ body {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 2px solid #aaa;
+    border: 2px solid #000000;
     margin-right: 10px;
     position: relative;
 }
 
 .option-input:checked+.option-custom-radio .marker {
-    border-color: var(--primary-color);
+    border-color: black;
 }
 
 /* Estilos de botones de navegación */
@@ -257,5 +263,27 @@ body {
 
     .btn {
         padding: 8px 16px;
+    }
+}
+
+/* ===== MODO OSCURO ===== */
+@media (prefers-color-scheme: dark) {
+    .timer {
+        background-color: #0f0f0f6e;
+        box-shadow: 0 2px 5px rgba(255, 255, 255, 0.274);
+        color: rgb(255, 255, 255);
+    }
+
+    :root {
+        --primary-color: rgba(34, 34, 34, 0.61);
+        --hover-color: rgba(49, 144, 199, 0.61);
+        --background-color: #4b4b4b;
+        --text-color: rgb(0, 0, 0);
+        --border-color: rgba(44, 44, 44, 0.795);
+    }
+
+    .questions-nav a {
+        background-color: rgba(34, 34, 34, 0.61);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 }
