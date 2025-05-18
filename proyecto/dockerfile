@@ -1,0 +1,19 @@
+FROM node:18-alpine
+WORKDIR /app
+
+# Copiar package.json del cliente
+COPY cliente/package.json cliente/package-lock.json ./cliente/
+
+# Instalar dependencias del cliente y limpiar cache
+RUN cd cliente && npm install --force && npm cache clean --force
+
+# Copiar todo el código (excepto node_modules local)
+COPY . .
+
+# Variables de entorno y puerto
+ENV NODE_ENV=development
+ENV CHOKIDAR_USEPOLLING=true
+EXPOSE 3000
+
+# Comando de inicio
+CMD ["sh", "-c", "cd cliente && npm run dev -- --host 0.0.0.0 --port 3000"]
