@@ -23,13 +23,11 @@ build:
 
 run: build
 	@echo "Iniciando la app en rama '$(BRANCH)' con hot-reload…"
-	@- docker rm -f $(CONTAINER_NAME) 2>/dev/null || true
-	docker run -d \
-		-p $(APP_PORT_HOST):$(APP_PORT_CONTAINER) \
-		--name $(CONTAINER_NAME) \
-		-v "$(PWD)":/app \
-		-v cliente-node_modules:/app/cliente/node_modules \
-		$(IMAGE_NAME)
+	docker run --rm -dp $(APP_PORT_HOST):$(APP_PORT_CONTAINER) \
+      	--name $(CONTAINER_NAME) \
+      	-v "$(PWD)/cliente":/app/cliente \
+    	-v /app/cliente/node_modules \
+      	$(IMAGE_NAME)
 	@echo "App disponible en http://localhost:$(APP_PORT_HOST)"
 	@echo "Para ver los logs: docker logs -f $(CONTAINER_NAME)"
 
