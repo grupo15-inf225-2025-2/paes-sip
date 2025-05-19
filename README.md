@@ -9,6 +9,7 @@ Repositorio del Proyecto Grupo 12 Profesor Ricardo Salas Paralelo 201
 
 ## Wiki
 * Puede acceder a la Wiki mediante el siguiente [enlace](https://github.com/doxter6/GRUPO12-2025-PROYINF/wiki)
+* Video hito 3, se encuentra en el siguiente [enlace](https://usmcl-my.sharepoint.com/:v:/g/personal/martina_madrid_usm_cl/EShtc_coro5BhPXSUvXuaCoBO4scJWu9Savlf0X_885fxQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=V7OKYm)
   
 ## Videos
 * Video presentación cliente [aqui](https://usmcl-my.sharepoint.com/:v:/g/personal/claudio_carreno_usm_cl/EQ1_1EaAYddAkW_vgU2wwFkBc2UOmd4ZwCz0bDELah-S9Q?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=rruca9)
