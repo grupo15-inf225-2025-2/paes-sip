@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import './App.css'
+import '../assets/css/BancoPreguntas.css'
+import Header from '../components/Header'
 
-function App() {
+export default function CreadorPreguntas() {
   const [question, setQuestion] = useState({
     text: '',
     points: 1,
@@ -46,30 +47,35 @@ function App() {
   }
 
   return (
+    <>
+    <Header/>
     <div className="app-container">
       <h1>Administrador de Preguntas</h1>
-      <div className="card">
-        <label htmlFor="question">Pregunta:</label>
-        <textarea
-          id="question"
-          value={question.text}
-          onChange={(e) => setQuestion({...question, text: e.target.value})}
-          placeholder="Escribe tu pregunta aquí..."
-          rows={3}
-        />
-        
-        <div className="points-input">
-          <label htmlFor="points">Puntaje:</label>
-          <input
-            type="number"
-            id="points"
-            min="1"
-            value={question.points}
-            onChange={handlePointsChange}
+      <div className='cont'>
+        <h2>Crear pregunta</h2>
+        <div className="pregunta">
+          <label htmlFor="question">Pregunta:</label>
+          <textarea
+            id="question"
+            value={question.text}
+            onChange={(e) => setQuestion({...question, text: e.target.value})}
+            placeholder="Escribe tu pregunta aquí..."
+            rows={3}
           />
-          <span>puntos</span>
+          
+          <div className="points-input">
+            <label htmlFor="points">Puntaje:</label>
+            <input
+              type="number"
+              id="points"
+              min="1"
+              value={question.points}
+              onChange={handlePointsChange}
+            />
+            <span>puntos</span>
+          </div>
         </div>
-      </div>
+      
       {options.map((option) => (
         <div 
           key={option.id} 
@@ -93,12 +99,14 @@ function App() {
           </div>
         </div>
       ))}
+      </div>
       <div className="preview">
         <h2>Resumen:</h2>
-        <p><strong>Pregunta:</strong> {question.text || '[Sin texto]'}</p>
-        <p><strong>Puntos:</strong> {question.points}</p>
-        <p><strong>Respuesta correcta:</strong> {question.correctOption ? `Opción ${question.correctOption}` : 'No seleccionada'}</p>
-        
+        <div className='card'>
+          <p><strong>Pregunta:</strong> {question.text || '[Sin texto]'}</p>
+          <p><strong>Puntos:</strong> {question.points}</p>
+          <p><strong>Respuesta correcta:</strong> {question.correctOption ? `Opción ${question.correctOption}` : 'No seleccionada'}</p>
+        </div>
         <button 
           onClick={saveQuestion}
           disabled={!question.text || !question.correctOption}
@@ -108,7 +116,7 @@ function App() {
         </button>
       </div>
     </div>
+    </>
+    
   )
 }
-
-export default App

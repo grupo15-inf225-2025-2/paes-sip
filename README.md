@@ -39,12 +39,12 @@ Nuestro proyecto está siendo desarrollado con un frontend en [React/Vite](https
    cd ./GRUPO12-2025-PROYINF/proyecto/cliente
    npm install
 
-5. Construir la imagen de docker
+4. Construir la imagen de docker
    ```bash
    make build
    
-6. Levanta frontend + hot-reload
+5. Levanta frontend + hot-reload
    ```bash
    make run
    
-8. En el navegador poner el enlace que dara la terminal
+6. En el navegador poner el enlace que dara la terminal
