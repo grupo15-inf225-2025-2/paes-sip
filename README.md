@@ -9,16 +9,20 @@ Repositorio del Proyecto Grupo 12 Profesor Ricardo Salas Paralelo 201
 
 ## Wiki
 * Puede acceder a la Wiki mediante el siguiente [enlace](https://github.com/doxter6/GRUPO12-2025-PROYINF/wiki)
+  
 ## Videos
 * Video presentación cliente [aqui](https://usmcl-my.sharepoint.com/:v:/g/personal/claudio_carreno_usm_cl/EQ1_1EaAYddAkW_vgU2wwFkBc2UOmd4ZwCz0bDELah-S9Q?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=rruca9)
 
-## Levantamiento del Proyecto
 
-Nuestro proyecto está siendo desarrollado con [Vite](https://vitejs.dev/)
+---
+
+## Levantamiento del Proyecto
+Nuestro proyecto está siendo desarrollado con un frontend en [React/Vite](https://vitejs.dev/) y un backend en Node.js junto con una base de datos PostgreSQL.
+
 
 ### Prerrequisitos
 - [Node.js](https://nodejs.org/) (v18+ recomendado) Hay que instalarlo en la pagina web o por comando, favor de seguir instrucciones de la pagina.
-- [Docker](https://www.docker.com) Se requiere para el funcionamiento de la base de datos y la pagina.
+- [Docker](https://www.docker.com/products/docker-desktop/) Instalar y configurarlo si es necesario con la integración para WSL2
 - [pgAdmin](https://www.pgadmin.org) Se requiere para la gestión de la base de datos.
 
 ### Instalación
@@ -28,13 +32,19 @@ Nuestro proyecto está siendo desarrollado con [Vite](https://vitejs.dev/)
 
 2. Ubica la carpeta en la terminal
     ```bash
-   cd ./GRUPO12-2025-PROYINF/Proyecto
+   cd ./GRUPO12-2025-PROYINF/proyecto
 
-3. Ejecuta el makefile
-    ```bash
-    make build
-    make run
-    make run-db
-    
-4. Siga las Instrucciones de la terminal
+3. Instala las dependencias necesarias para cliente
+   ```bash
+   cd ./GRUPO12-2025-PROYINF/proyecto/cliente
+   npm install
 
+4. Construir la imagen de docker
+   ```bash
+   make build
+   
+5. Levanta frontend + hot-reload
+   ```bash
+   make run
+   
+6. En el navegador poner el enlace que dara la terminal
