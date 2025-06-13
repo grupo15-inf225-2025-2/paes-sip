@@ -5,7 +5,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true,
-    port: 3000,
+    port: 5173,
+    strictPort: true,
      watch: {
       usePolling: true,   // obliga a Vite a “mirar” cambios continuamente
     }

@@ -1,67 +1,58 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../assets/css/CreadorPreguntas.css';
 import Header from '../components/Header';
 
 export default function BancoPreguntas() {
   const [filters, setFilters] = useState({
-    subject: '',
-    thematicAxis: '',
-    skill: '',
-    keyword: ''
+    asignatura: '',
+    tematica: '',
+    habilidad: '',
+    etiqueta: ''
   });
   const [newTest, setNewTest] = useState({
-    title: '',
-    description: '',
-    questions: []
+    titulo: '',
+    descripcion: '',
+    preguntas: []
   });
 
   const [filteredQuestions, setFilteredQuestions] = useState([]);
+  const [questionBank, setQuestionBank] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const [questionBank, setQuestionBank] = useState([
-    {
-      id: 1,
-      subject: 'Matemáticas',
-      thematicAxis: 'Álgebra',
-      skill: 'Resolución de problemas',
-      keywords: ['ecuaciones', 'lineales'],
-      question: 'Resuelve la ecuación: 2x + 5 = 15',
-      options: ['5', '10', '7.5', '20'],
-      correctAnswer: 0,
-      points: 2
-    },
-    {
-      id: 2,
-      subject: 'Lenguaje',
-      thematicAxis: 'Comprensión lectora',
-      skill: 'Inferencia',
-      keywords: ['texto', 'inferir'],
-      question: '¿Qué se puede inferir del siguiente texto...?',
-      options: ['Opción A', 'Opción B', 'Opción C', 'Opción D'],
-      correctAnswer: 1,
-      points: 1
-    },
-    {
-      id: 3,
-      subject: 'Ciencias',
-      thematicAxis: 'Biología',
-      skill: 'Análisis experimental',
-      keywords: ['célula', 'membrana'],
-      question: 'La función principal de la membrana celular es:',
-      options: ['Producción de energía', 'Protección del núcleo', 'Control del paso de sustancias', 'Síntesis de proteínas'],
-      correctAnswer: 2,
-      points: 1
-    }
-  ]);
-
+  // Cargar preguntas desde el backend
   useEffect(() => {
-    const filtered = questionBank.filter(q => {
-      return (
-        (filters.subject === '' || q.subject === filters.subject) &&
-        (filters.thematicAxis === '' || q.thematicAxis === filters.thematicAxis) &&
-        (filters.skill === '' || q.skill === filters.skill) &&
-        (filters.keyword === '' || q.keywords.some(kw => kw.includes(filters.keyword.toLowerCase()))))
-    });
-    setFilteredQuestions(filtered);
+    const fetchQuestions = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/api/pregunta');
+        setQuestionBank(response.data);
+        setFilteredQuestions(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError('Error al cargar las preguntas');
+        setLoading(false);
+        console.error('Error fetching questions:', err);
+      }
+    };
+    
+    fetchQuestions();
+  }, []);
+
+  // Filtrar preguntas
+  useEffect(() => {
+    if (questionBank.length > 0) {
+      const filtered = questionBank.filter(q => {
+        return (
+          (filters.asignatura === '' || q.asignatura === filters.asignatura) &&
+          (filters.tematica === '' || q.tematica === filters.tematica) &&
+          (filters.habilidad === '' || q.habilidad === filters.habilidad) &&
+          (filters.etiqueta === '' || 
+            (q.etiquetas && q.etiquetas.some(etq => etq.includes(filters.etiqueta.toLowerCase())))
+        ));
+      });
+      setFilteredQuestions(filtered);
+    }
   }, [filters, questionBank]);
 
   const handleFilterChange = (e) => {
@@ -72,51 +63,67 @@ export default function BancoPreguntas() {
     });
   };
 
-  const addQuestionToTest = (questionId) => {
-    if (!newTest.questions.includes(questionId)) {
+  const addQuestionToTest = (preguntaId) => {
+    if (!newTest.preguntas.includes(preguntaId)) {
       setNewTest({
         ...newTest,
-        questions: [...newTest.questions, questionId]
+        preguntas: [...newTest.preguntas, preguntaId]
       });
     }
   };
 
-  const removeQuestionFromTest = (questionId) => {
+  const removeQuestionFromTest = (preguntaId) => {
     setNewTest({
       ...newTest,
-      questions: newTest.questions.filter(id => id !== questionId)
+      preguntas: newTest.preguntas.filter(id => id !== preguntaId)
     });
   };
 
-  const saveTest = () => {
-    if (newTest.questions.length === 0) {
+  const saveTest = async () => {
+    if (newTest.preguntas.length === 0) {
       alert('Debe agregar al menos una pregunta al ensayo');
       return;
     }
 
     const testData = {
-      ...newTest,
-      totalPoints: newTest.questions.reduce((total, qId) => {
+      titulo: newTest.titulo,
+      descripcion: newTest.descripcion,
+      puntos: newTest.preguntas.reduce((total, qId) => {
         const q = questionBank.find(q => q.id === qId);
-        return total + (q?.points || 0);
+        return total + (q?.puntos || 0);
       }, 0),
-      questions: newTest.questions.map(qId => {
+      preguntas: newTest.preguntas.map(qId => {
         const q = questionBank.find(q => q.id === qId);
         return {
           id: q.id,
-          question: q.question,
-          points: q.points
+          pregunta: q.pregunta,
+          puntos: q.puntos
         };
       })
     };
 
-    console.log('Ensayo guardado:', testData);
-    alert(`Ensayo "${testData.title}" guardado con ${testData.questions.length} preguntas y ${testData.totalPoints} puntos totales`);
+    try {
+      await axios.post('http://localhost:3001/api/ensayo', testData);
+      alert(`Ensayo "${testData.titulo}" guardado con ${testData.preguntas.length} preguntas y ${testData.puntos} puntos totales`);
+      
+      setNewTest({
+        titulo: '',
+        descripcion: '',
+        preguntas: []
+      });
+    } catch (err) {
+      console.error('Error saving test:', err);
+      alert('Error al guardar el ensayo');
+    }
   };
 
-  const uniqueSubjects = [...new Set(questionBank.map(q => q.subject))];
-  const uniqueThematicAxes = [...new Set(questionBank.map(q => q.thematicAxis))];
-  const uniqueSkills = [...new Set(questionBank.map(q => q.skill))];
+  // Obtener valores únicos para los filtros
+  const uniqueAsignaturas = [...new Set(questionBank.map(q => q.asignatura))];
+  const uniqueTematicas = [...new Set(questionBank.map(q => q.tematica))];
+  const uniqueHabilidades = [...new Set(questionBank.map(q => q.habilidad))];
+
+  if (loading) return <div>Cargando preguntas...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <>
@@ -130,53 +137,53 @@ export default function BancoPreguntas() {
             <div className="filter-group">
               <label>Asignatura:</label>
               <select
-                name="subject"
-                value={filters.subject}
+                name="asignatura"
+                value={filters.asignatura}
                 onChange={handleFilterChange}
               >
                 <option value="">Todas</option>
-                {uniqueSubjects.map(subject => (
-                  <option key={subject} value={subject}>{subject}</option>
+                {uniqueAsignaturas.map(asignatura => (
+                  <option key={asignatura} value={asignatura}>{asignatura}</option>
                 ))}
               </select>
             </div>
 
             <div className="filter-group">
-              <label>Eje temático:</label>
+              <label>Temática:</label>
               <select
-                name="thematicAxis"
-                value={filters.thematicAxis}
-                onChange={handleFilterChange}
-              >
-                <option value="">Todos</option>
-                {uniqueThematicAxes.map(axis => (
-                  <option key={axis} value={axis}>{axis}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="filter-group">
-              <label>Habilidad evaluada:</label>
-              <select
-                name="skill"
-                value={filters.skill}
+                name="tematica"
+                value={filters.tematica}
                 onChange={handleFilterChange}
               >
                 <option value="">Todas</option>
-                {uniqueSkills.map(skill => (
-                  <option key={skill} value={skill}>{skill}</option>
+                {uniqueTematicas.map(tematica => (
+                  <option key={tematica} value={tematica}>{tematica}</option>
                 ))}
               </select>
             </div>
 
             <div className="filter-group">
-              <label>Palabra clave:</label>
+              <label>Habilidad:</label>
+              <select
+                name="habilidad"
+                value={filters.habilidad}
+                onChange={handleFilterChange}
+              >
+                <option value="">Todas</option>
+                {uniqueHabilidades.map(habilidad => (
+                  <option key={habilidad} value={habilidad}>{habilidad}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>Etiqueta:</label>
               <input
                 type="text"
-                name="keyword"
-                value={filters.keyword}
+                name="etiqueta"
+                value={filters.etiqueta}
                 onChange={handleFilterChange}
-                placeholder="Escribe una palabra clave"
+                placeholder="Escribe una etiqueta"
               />
             </div>
           </div>
@@ -184,30 +191,30 @@ export default function BancoPreguntas() {
           <div className="questions-section">
             <h2>Preguntas Disponibles ({filteredQuestions.length})</h2>
             <div className="questions-grid">
-              {filteredQuestions.map(question => (
-                <div key={question.id} className="question-card">
+              {filteredQuestions.map(pregunta => (
+                <div key={pregunta.id} className="question-card">
                   <div className="question-header">
-                    <span className="subject-badge">{question.subject}</span>
-                    <span className="points-badge">{question.points} pts</span>
+                    <span className="subject-badge">{pregunta.asignatura}</span>
+                    <span className="points-badge">{pregunta.puntos} pts</span>
                   </div>
-                  {question.question}
+                  {pregunta.pregunta}
                   <ul className="options-list">
-                    {question.options.map((option, index) => (
+                    {pregunta.opciones.map((opcion, index) => (
                       <li
                         key={index}
-                        className={index === question.correctAnswer ? 'correct-option' : ''}
+                        className={index === pregunta.correcta ? 'correct-option' : ''}
                       >
-                        {option}
+                        {opcion}
                       </li>
                     ))}
                   </ul>
                   <div className="question-footer">
-                    <span className="skill-tag">{question.skill}</span>
+                    <span className="skill-tag">{pregunta.habilidad}</span>
                     <button
-                      onClick={() => addQuestionToTest(question.id)}
-                      disabled={newTest.questions.includes(question.id)}
+                      onClick={() => addQuestionToTest(pregunta.id)}
+                      disabled={newTest.preguntas.includes(pregunta.id)}
                     >
-                      {newTest.questions.includes(question.id) ? '✓ Agregada' : 'Agregar al ensayo'}
+                      {newTest.preguntas.includes(pregunta.id) ? '✓ Agregada' : 'Agregar al ensayo'}
                     </button>
                   </div>
                 </div>
@@ -222,34 +229,34 @@ export default function BancoPreguntas() {
               <label>Título del ensayo:</label>
               <input
                 type="text"
-                value={newTest.title}
-                onChange={(e) => setNewTest({ ...newTest, title: e.target.value })}
+                value={newTest.titulo}
+                onChange={(e) => setNewTest({ ...newTest, titulo: e.target.value })}
                 placeholder="Ej: Ensayo PAES Matemáticas 2025"
               />
             </div>
             <div className="form-group">
               <label>Descripción:</label>
               <textarea
-                value={newTest.description}
-                onChange={(e) => setNewTest({ ...newTest, description: e.target.value })}
+                value={newTest.descripcion}
+                onChange={(e) => setNewTest({ ...newTest, descripcion: e.target.value })}
                 placeholder="Descripción del ensayo..."
                 rows={3}
               />
             </div>
 
             <div className="selected-questions">
-              <h3>Preguntas seleccionadas ({newTest.questions.length})</h3>
+              <h3>Preguntas seleccionadas ({newTest.preguntas.length})</h3>
               <div className="questions-list">
-                {newTest.questions.length === 0 ? (
+                {newTest.preguntas.length === 0 ? (
                   <p className="empty-message">No hay preguntas seleccionadas</p>
                 ) : (
                   <ul>
-                    {newTest.questions.map(qId => {
+                    {newTest.preguntas.map(qId => {
                       const q = questionBank.find(q => q.id === qId);
                       return q ? (
                         <li key={q.id}>
-                          <span>{q.question}</span>
-                          <span className="question-points">{q.points} pts</span>
+                          <span>{q.pregunta}</span>
+                          <span className="question-points">{q.puntos} pts</span>
                           <button onClick={() => removeQuestionFromTest(q.id)}>×</button>
                         </li>
                       ) : null;
@@ -259,18 +266,18 @@ export default function BancoPreguntas() {
               </div>
 
               <div className="test-summary">
-                <p>Total de preguntas: <strong>{newTest.questions.length}</strong></p>
+                <p>Total de preguntas: <strong>{newTest.preguntas.length}</strong></p>
                 <p>Puntaje total: <strong>
-                  {newTest.questions.reduce((total, qId) => {
+                  {newTest.preguntas.reduce((total, qId) => {
                     const q = questionBank.find(q => q.id === qId);
-                    return total + (q?.points || 0);
+                    return total + (q?.puntos || 0);
                   }, 0)}
                 </strong> puntos</p>
               </div>
 
               <button
                 onClick={saveTest}
-                disabled={newTest.questions.length === 0 || !newTest.title}
+                disabled={newTest.preguntas.length === 0 || !newTest.titulo}
                 className="save-test-btn"
               >
                 Guardar Ensayo
@@ -282,4 +289,3 @@ export default function BancoPreguntas() {
     </>
   );
 }
-

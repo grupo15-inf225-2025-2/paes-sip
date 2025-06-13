@@ -115,11 +115,11 @@
     padding: 12px;
     border-bottom: 1px solid #ccc;
     text-align: center;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .sin-eval {
-    color: #ffffffdc;
+    color: #000000dc;
     font-style: italic;
 }
 
