@@ -7,14 +7,14 @@
 }
 
 .cont{
-  background-color: #57c2ffcc;
+  background-color: #3664e3;
   border-radius: 8px;
   border: 1px solid #000000;
   padding: 30px;
 }
 
 .pregunta {
-  background: #72a6ffb9;
+  background: #ffffffff;
   padding: 15px 35px;
   margin-bottom: 15px;
   border-radius: 8px;
@@ -22,7 +22,7 @@
 }
 
 .card {
-  background: #c0d7ff83;
+  background: #ffffff83;
   padding: 15px;
   margin-bottom: 15px;
   border-radius: 8px;
@@ -84,7 +84,7 @@ textarea, input[type="number"] {
 .preview {
   margin-top: 30px;
   padding: 20px;
-  background-color: #52b8f3cc;
+  background-color: #3664e3;
   border-radius: 8px;
   border: 1px solid #000000;
 }

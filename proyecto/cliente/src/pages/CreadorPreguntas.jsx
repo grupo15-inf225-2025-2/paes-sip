@@ -59,6 +59,7 @@ export default function CreadorPreguntas() {
     const preguntaData = {
       ...pregunta,
       opciones: opciones.map(o => o.texto),
+      correcta: pregunta.correcta - 1,
       // Asegurar que las etiquetas sean un array
       etiquetas: Array.isArray(pregunta.etiquetas) ? pregunta.etiquetas : []
     };

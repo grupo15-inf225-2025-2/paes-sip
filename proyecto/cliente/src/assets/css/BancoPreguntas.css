@@ -3,7 +3,7 @@
   margin: 40px auto 0;
   padding: 20px;
   font-family: 'Segoe UI';
-  background-color: #e2e2e2;
+  background-color: #edeeec;
 }
 
 h1, h2, h3, h4, h5 {
@@ -11,7 +11,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .filters-section {
-  background-color: #52b8f3cc;
+  background-color: #3664e3;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 20px;
