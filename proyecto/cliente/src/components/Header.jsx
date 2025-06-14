@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
-import logo from "../assets/img/logo150.webp"
+import logo from "../assets/img/logo150.webp";
 
 export default function Header() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <header>
@@ -11,13 +11,13 @@ export default function Header() {
         <section className="header-nav">
           <div className="logo" onClick={() => navigate("/")}>
             <img src={logo} alt="Logo" />
-            <span style={{ fontWeight: 'bold' }}>EduPAES</span>
+            <span className="logo-text">EduPAES</span>
           </div>
           <div className="user-controls">
-            <button className="nav-link">
+            <button className="nav-button" onClick={() => navigate("/user")}>
               Usuario
             </button>
-            <button className="nav-link">
+            <button className="nav-button" onClick={() => navigate("/logout")}>
               Cerrar sesión
             </button>
           </div>
@@ -29,33 +29,31 @@ export default function Header() {
           <div className="menu-items">
             <button
               onClick={() => navigate("/bancopreguntas")}
-              className="nav-link"
+              className="nav-button"
             >
               Banco de Preguntas
             </button>
             <button
               onClick={() => navigate("/creadorpreguntas")}
-              className="nav-link"
+              className="nav-button"
             >
               Creador de Preguntas
             </button>
             <button
               onClick={() => navigate("/ResultadosEst")}
-              className="nav-link"
+              className="nav-button"
             >
               Tu Progreso
             </button>
             <button
-              onClick={() => navigate("/ensayo/:id")}
-              className="nav-link"
+              onClick={() => navigate("/ensayo/1")} // Asumiendo que el primer ensayo tiene el ID 1
+              className="nav-button"
             >
-              Ensayos
+              Ensayo
             </button>
           </div>
         </div>
-
-
       </nav>
-    </header >
-  )
+    </header>
+  );
 }
