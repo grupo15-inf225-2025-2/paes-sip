@@ -1,4 +1,5 @@
 services:
+  # Base de datos principal (myapp)
   db:
     image: postgres:15
     environment:
@@ -9,6 +10,16 @@ services:
       - "${DB_PORT_HOST}:${DB_PORT_CONTAINER}"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+  auth_db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: ${DB_USER}       
+      POSTGRES_PASSWORD: ${DB_PASSWORD} 
+      POSTGRES_DB: auth_db           
+    ports:
+      - "${AUTH_DB_PORT_HOST}:${DB_PORT_CONTAINER}" 
+    volumes:
+      - postgres_auth_data:/var/lib/postgresql/data
 
   backend:
     build:
@@ -18,8 +29,10 @@ services:
       - "${BACKEND_PORT_HOST}:3001"
     environment:
       DATABASE_URL: "postgres://${DB_USER}:${DB_PASSWORD}@db:${DB_PORT_CONTAINER}/myapp"
+      AUTH_DB_URL: "postgres://${DB_USER}:${DB_PASSWORD}@auth_db:${AUTH_DB_PORT_HOST}/auth_db" 
     depends_on:
       - db
+      - auth_db 
 
   frontend:
     build:
@@ -32,3 +45,4 @@ services:
 
 volumes:
   postgres_data:
+  postgres_auth_data:  # Nuevo volumen para la BD de usuarios
