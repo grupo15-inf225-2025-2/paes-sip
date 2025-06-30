@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
-
 import logo from "../assets/img/logo150.webp";
 
-export default function Header() {
+export default function Navbar({ isAuthenticated, user, logout }) {
   const navigate = useNavigate();
 
   return (
@@ -13,47 +12,89 @@ export default function Header() {
             <img src={logo} alt="Logo" />
             <span className="logo-text">EduPAES</span>
           </div>
+          
           <div className="user-controls">
-            <button className="nav-button" onClick={() => navigate("/user")}>
-              Usuario
-            </button>
-            <button className="nav-button" onClick={() => navigate("/logout")}>
-              Cerrar sesión
-            </button>
+            {isAuthenticated ? (
+              <>
+                <span className="welcome-text">Hola, {user?.nombre_usuario}</span>
+                <button 
+                  className="nav-button" 
+                  onClick={() => navigate("/user")}
+                >
+                  Mi Perfil
+                </button>
+                <button 
+                  className="nav-button" 
+                  onClick={logout}
+                >
+                  Cerrar sesión
+                </button>
+              </>
+            ) : (
+              <>
+                <button 
+                  className="nav-button" 
+                  onClick={() => navigate("/login")}
+                >
+                  Iniciar sesión
+                </button>
+                <button 
+                  className="nav-button" 
+                  onClick={() => navigate("/register")}
+                >
+                  Registrarse
+                </button>
+              </>
+            )}
           </div>
         </section>
       </div>
 
-      <nav className="navbar">
-        <div className="bottom-nav">
-          <div className="menu-items">
-            <button
-              onClick={() => navigate("/bancopreguntas")}
-              className="nav-button"
-            >
-              Banco de Preguntas
-            </button>
-            <button
-              onClick={() => navigate("/creadorpreguntas")}
-              className="nav-button"
-            >
-              Creador de Preguntas
-            </button>
-            <button
-              onClick={() => navigate("/ResultadosEst")}
-              className="nav-button"
-            >
-              Tu Progreso
-            </button>
-            <button
-              onClick={() => navigate("/ensayo/1")} // Asumiendo que el primer ensayo tiene el ID 1
-              className="nav-button"
-            >
-              Ensayo
-            </button>
+      {isAuthenticated && (
+        <nav className="navbar">
+          <div className="bottom-nav">
+            <div className="menu-items">
+              <button
+                onClick={() => navigate("/bancopreguntas")}
+                className="nav-button"
+              >
+                Banco de Preguntas
+              </button>
+              
+              {user?.profesor && (
+                <>
+                  <button
+                    onClick={() => navigate("/creadorpreguntas")}
+                    className="nav-button"
+                  >
+                    Creador de Preguntas
+                  </button>
+                  <button
+                    onClick={() => navigate("/revisar")}
+                    className="nav-button"
+                  >
+                    Revisar Ensayos
+                  </button>
+                </>
+              )}
+              
+              <button
+                onClick={() => navigate("/ResultadosEst")}
+                className="nav-button"
+              >
+                Tu Progreso
+              </button>
+              
+              <button
+                onClick={() => navigate("/ensayo/1")}
+                className="nav-button"
+              >
+                Realizar Ensayo
+              </button>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      )}
     </header>
   );
 }

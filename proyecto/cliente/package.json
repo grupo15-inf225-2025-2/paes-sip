@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "axios": "^1.9.0",
+    "bcryptjs": "^3.0.2",
+    "jsonwebtoken": "^9.0.2",
     "katex": "^0.16.22",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

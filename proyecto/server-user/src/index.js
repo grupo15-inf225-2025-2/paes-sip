@@ -1,8 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import sequelize from './db.js';
-import questionRoutes from './routes/questionRoutes.js';
-import testRoutes from './routes/testRoutes.js';
+import userRoutes from './routes/userRoutes.js'; // Nueva importación
 
 const app = express();
 
@@ -31,22 +30,18 @@ const initializeDatabase = async () => {
   }
 };
 
-// Configuración de rutas
-app.use('/api/pregunta', questionRoutes);
-app.use('/api/ensayo', testRoutes);
+app.use('/api/usuario', userRoutes);
 
 // Ruta de prueba
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Backend funcionando' });
 });
 
-// Manejo global de errores
 app.use((err, req, res, next) => {
   console.error('Error:', err.stack);
   res.status(500).json({ error: 'Algo salió mal en el servidor' });
 });
 
-// Inicialización del servidor
 const startServer = async () => {
   await initializeDatabase();
 
@@ -55,6 +50,7 @@ const startServer = async () => {
     console.log(`Servidor backend corriendo en http://localhost:${PORT}`);
     console.log(`API de preguntas disponible en http://localhost:${PORT}/api/pregunta`);
     console.log(`API de ensayos disponible en http://localhost:${PORT}/api/ensayo`);
+    console.log(`API de usuarios disponible en http://localhost:${PORT}/api/usuario`);
   });
 };
 
