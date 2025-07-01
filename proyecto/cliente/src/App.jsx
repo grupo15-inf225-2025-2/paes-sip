@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import axios from 'axios'
+import 'katex/dist/katex.min.css'
+import './assets/css/Ensayo.css';
 
 import Landing from './pages/Landing'
 import Home from './pages/Home'

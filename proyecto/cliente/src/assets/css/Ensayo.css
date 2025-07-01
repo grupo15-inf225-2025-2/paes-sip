@@ -195,7 +195,7 @@ body {
     gap: 1rem;
 }
 
-.btn-finish, .btn-reset {
+.btn-reset {
     border: 1px solid var(--border-color);
     padding: 8px 16px;
     border-radius: 6px;
@@ -203,9 +203,6 @@ body {
     font-size: 0.9rem;
     font-weight: 500;
     transition: all 0.3s ease;
-}
-
-.btn-reset {
     background-color: var(--light-gray);
     color: var(--text-color);
 }
@@ -676,6 +673,91 @@ body {
     border-top: 1px solid var(--border-color);
 }
 
+/* ===== ESTILO PARA EL MODAL ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header h3 {
+    margin: 0 0 16px 0;
+    color: #333;
+    text-align: center;
+}
+
+.modal-body {
+    margin-bottom: 20px;
+}
+
+.modal-body p {
+    margin: 8px 0;
+    color: #666;
+    line-height: 1.5;
+}
+
+.answered-summary {
+    background-color: #f8f9fa;
+    padding: 12px;
+    border-radius: 4px;
+    margin-top: 12px;
+}
+
+.answered-summary p {
+    margin: 0;
+    color: #333;
+    font-size: 14px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.modal-actions .btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
     .container {
@@ -887,3 +969,4 @@ body {
         color: #aaa;
     }
 }
+
