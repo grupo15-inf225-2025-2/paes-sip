@@ -126,7 +126,6 @@ export default function BancoPreguntas() {
 
   return (
     <>
-      <Header />
       <div className="app-container">
         <h1>Banco de Preguntas PAES</h1>
 
