@@ -21,7 +21,6 @@ export default function BancoPreguntas() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Cargar preguntas desde el backend
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
