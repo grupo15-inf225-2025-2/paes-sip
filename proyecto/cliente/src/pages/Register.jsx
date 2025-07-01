@@ -26,26 +26,7 @@ export default function Register({ setIsAuthenticated, setUser }) {
     setError('');
     
     try {
-      // 1. Registrar nuevo usuario
-      const response = await axios.post('http://localhost:3001/api/usuario/register', userData);
-      
-      // 2. Si el backend devuelve token, hacer auto-login
-      if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
-        axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-        
-        // 3. Obtener datos del usuario
-        const userResponse = await axios.get('http://localhost:3001/api/usuario/me');
-        setIsAuthenticated(true);
-        setUser(userResponse.data);
-        
-        // 4. Redirigir al dashboard
-        navigate('/');
-      } else {
-        // Si no hay auto-login, redirigir a login
-        navigate('/login');
-      }
-      
+      const response = await axios.post('http://localhost:3002/api/usuario/register', userData);
       return { success: true };
     } catch (err) {
       // Manejo de errores detallado

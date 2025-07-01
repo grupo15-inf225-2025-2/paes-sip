@@ -14,76 +14,160 @@ import Register from './pages/Register'
 import Navbar from './components/Header'
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [authState, setAuthState] = useState({
+    isAuthenticated: false,
+    user: null,
+    isLoading: true
+  })
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const token = localStorage.getItem('token')
-        if (token) {
-          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-          const response = await axios.get('/api/usuario/me')
-          setIsAuthenticated(true)
-          setUser(response.data)
+        const userData = localStorage.getItem('user')
+        
+        if (userData) {
+          const parsedUser = JSON.parse(userData)
+          const response = await axios.get(`/api/usuario/${parsedUser.id}`)
+          
+          setAuthState({
+            isAuthenticated: true,
+            user: response.data,
+            isLoading: false
+          })
         }
       } catch (error) {
         console.error('Error de autenticación:', error)
-        localStorage.removeItem('token')
+        clearAuthData()
       } finally {
-        setLoading(false)
+        setAuthState(prev => ({ ...prev, isLoading: false }))
       }
     }
+    
     checkAuth()
   }, [])
+
+  const clearAuthData = () => {
+    localStorage.removeItem('user')
+    setAuthState({
+      isAuthenticated: false,
+      user: null,
+      isLoading: false
+    })
+  }
 
   const login = async (credentials) => {
     try {
       const response = await axios.post('/api/usuario/login', credentials)
-      localStorage.setItem('token', response.data.token)
-      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`
-      setIsAuthenticated(true)
-      setUser(response.data.user)
+      
+      const userResponse = await axios.get(`/api/usuario/${response.data.id}`)
+      
+      localStorage.setItem('user', JSON.stringify(userResponse.data))
+      
+      setAuthState({
+        isAuthenticated: true,
+        user: userResponse.data,
+        isLoading: false
+      })
+      
       return { success: true }
     } catch (error) {
-      return { success: false, message: error.response?.data?.message || 'Error al iniciar sesión' }
+      return { 
+        success: false, 
+        message: error.response?.data?.message || 'Error al iniciar sesión' 
+      }
     }
   }
 
   const register = async (userData) => {
     try {
-      await axios.post('/api/usuario/register', userData)
+      // 1. Registrar nuevo usuario
+      const response = await axios.post('/api/usuario/register', userData)
+      
+      // 2. Obtener datos completos del usuario registrado
+      const userResponse = await axios.get(`/api/usuario/${response.data.id}`)
+      
+
+      localStorage.setItem('user', JSON.stringify(userResponse.data))
+      
+      setAuthState({
+        isAuthenticated: true,
+        user: userResponse.data,
+        isLoading: false
+      })
+      
       return { success: true }
     } catch (error) {
-      return { success: false, message: error.response?.data?.message || 'Error al registrar' }
+      return { 
+        success: false, 
+        message: error.response?.data?.message || 'Error al registrar' 
+      }
     }
   }
 
   const logout = () => {
-    localStorage.removeItem('token')
-    delete axios.defaults.headers.common['Authorization']
-    setIsAuthenticated(false)
-    setUser(null)
-  }
-
-  if (loading) {
-    return <div>Cargando...</div>
+    clearAuthData()
   }
 
   return (
-    <BrowserRouter>
-      <Navbar isAuthenticated={isAuthenticated} user={user} logout={logout} />
-      <Routes>
-        <Route path="/" element={isAuthenticated ? <Home user={user} /> : <Landing />} />
-        <Route path="/landing" element={<Landing />} />
-        <Route path="/login" element={!isAuthenticated ? <Login login={login} /> : <Navigate to="/" />} />
-        <Route path="/register" element={!isAuthenticated ? <Register register={register} /> : <Navigate to="/" />} />
-        <Route path="/bancopreguntas" element={isAuthenticated ? <BancoPreguntas user={user} /> : <Navigate to="/login" />} />
-        <Route path="/creadorpreguntas" element={isAuthenticated ? <CreadorPreguntas user={user} /> : <Navigate to="/login" />} />
-        <Route path="/resultadosEst" element={isAuthenticated ? <ResultadosEst user={user} /> : <Navigate to="/login" />} />
-        <Route path="/ensayo/:id" element={isAuthenticated ? <Ensayos user={user} /> : <Navigate to="/login" />} />
-        <Route path="/revisar/:id" element={isAuthenticated && user?.profesor ? <Revisar user={user} /> : <Navigate to="/" />} />
+<BrowserRouter>
+  {!location.pathname.includes('/landing') && (
+    <Navbar 
+      isAuthenticated={authState.isAuthenticated} 
+      user={authState.user} 
+      logout={logout} 
+    />
+  )}
+  
+  <Routes>
+    <Route path="/" element={
+      authState.isAuthenticated ? 
+        <Home user={authState.user} /> : 
+        <Landing showHeader={false} />
+        } />
+
+        
+        <Route path="/login" element={
+          !authState.isAuthenticated ? 
+            <Login setAuthState={setAuthState} /> : 
+            <Navigate to="/" />
+        } />
+        
+        <Route path="/register" element={
+          !authState.isAuthenticated ? 
+            <Register register={register} /> : 
+            <Navigate to="/" />
+        } />
+        
+        {/* Rutas protegidas */}
+        <Route path="/bancopreguntas" element={
+          authState.isAuthenticated ? 
+            <BancoPreguntas user={authState.user} /> : 
+            <Navigate to="/login" />
+        } />
+        
+        <Route path="/creadorpreguntas" element={
+          authState.isAuthenticated && authState.user?.profesor ? 
+            <CreadorPreguntas user={authState.user} /> : 
+            <Navigate to="/" />
+        } />
+        
+        <Route path="/resultadosEst" element={
+          authState.isAuthenticated ? 
+            <ResultadosEst user={authState.user} /> : 
+            <Navigate to="/login" />
+        } />
+        
+        <Route path="/ensayo/:id" element={
+          authState.isAuthenticated ? 
+            <Ensayos user={authState.user} /> : 
+            <Navigate to="/login" />
+        } />
+        
+        <Route path="/revisar/:id" element={
+          authState.isAuthenticated && authState.user?.profesor ? 
+            <Revisar user={authState.user} /> : 
+            <Navigate to="/" />
+        } />
       </Routes>
     </BrowserRouter>
   )

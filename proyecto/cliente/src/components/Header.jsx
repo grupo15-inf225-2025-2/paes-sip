@@ -1,8 +1,15 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/img/logo150.webp";
 
-export default function Navbar({ isAuthenticated, user, logout }) {
+export default function Navbar({isAuthenticated, user, logout}) {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isActive = (path) => {
+    return location.pathname === path || 
+           (path === "/" && location.pathname === "/") ||
+           (path !== "/" && location.pathname.startsWith(path));
+  };
 
   return (
     <header>
@@ -18,13 +25,13 @@ export default function Navbar({ isAuthenticated, user, logout }) {
               <>
                 <span className="welcome-text">Hola, {user?.nombre_usuario}</span>
                 <button 
-                  className="nav-button" 
+                  className={`nav-button ${isActive("/user") ? "active" : ""}`}
                   onClick={() => navigate("/user")}
                 >
                   Mi Perfil
                 </button>
                 <button 
-                  className="nav-button" 
+                  className="nav-button logout-button"
                   onClick={logout}
                 >
                   Cerrar sesión
@@ -33,13 +40,13 @@ export default function Navbar({ isAuthenticated, user, logout }) {
             ) : (
               <>
                 <button 
-                  className="nav-button" 
+                  className={`nav-button ${isActive("/login") ? "active" : ""}`}
                   onClick={() => navigate("/login")}
                 >
                   Iniciar sesión
                 </button>
                 <button 
-                  className="nav-button" 
+                  className={`nav-button ${isActive("/register") ? "active" : ""}`}
                   onClick={() => navigate("/register")}
                 >
                   Registrarse
@@ -56,7 +63,7 @@ export default function Navbar({ isAuthenticated, user, logout }) {
             <div className="menu-items">
               <button
                 onClick={() => navigate("/bancopreguntas")}
-                className="nav-button"
+                className={`nav-button ${isActive("/bancopreguntas") ? "active" : ""}`}
               >
                 Banco de Preguntas
               </button>
@@ -65,13 +72,13 @@ export default function Navbar({ isAuthenticated, user, logout }) {
                 <>
                   <button
                     onClick={() => navigate("/creadorpreguntas")}
-                    className="nav-button"
+                    className={`nav-button ${isActive("/creadorpreguntas") ? "active" : ""}`}
                   >
                     Creador de Preguntas
                   </button>
                   <button
                     onClick={() => navigate("/revisar")}
-                    className="nav-button"
+                    className={`nav-button ${isActive("/revisar") ? "active" : ""}`}
                   >
                     Revisar Ensayos
                   </button>
@@ -80,14 +87,14 @@ export default function Navbar({ isAuthenticated, user, logout }) {
               
               <button
                 onClick={() => navigate("/ResultadosEst")}
-                className="nav-button"
+                className={`nav-button ${isActive("/ResultadosEst") ? "active" : ""}`}
               >
                 Tu Progreso
               </button>
               
               <button
                 onClick={() => navigate("/ensayo/1")}
-                className="nav-button"
+                className={`nav-button ${isActive("/ensayo") ? "active" : ""}`}
               >
                 Realizar Ensayo
               </button>

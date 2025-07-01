@@ -4,13 +4,18 @@ import {
   createusuario,
   getusuarioById,
   updateusuario,
-  deleteusuario
+  deleteusuario,
+  loginUser
 } from '../controllers/userController.js';
 
 const router = express.Router();
 
+// Rutas de autenticación
+router.post('/login', loginUser);
+router.post('/register', createusuario);
+
+// Rutas CRUD
 router.get('/', getusuarios);
-router.post('/', createusuario);
 router.get('/:id', getusuarioById);
 router.put('/:id', updateusuario);
 router.delete('/:id', deleteusuario);

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function Login({ setIsAuthenticated, setUser }) {
+export default function Login({ setAuthState }) {
   const [credentials, setCredentials] = useState({
     nombre_usuario: '',
     contrasena: ''
@@ -24,52 +24,45 @@ export default function Login({ setIsAuthenticated, setUser }) {
     setError('');
     
     try {
-      // 1. Realizar login
-      const response = await axios.post('http://localhost:3001/api/usuario/login', credentials);
+      const response = await axios.post('http://localhost:3002/api/usuario/login', credentials);
       
-      // 2. Guardar token en localStorage
-      localStorage.setItem('token', response.data.token);
-      
-      // 3. Configurar headers de axios para futuras peticiones
-      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-      
-      // 4. Obtener datos del usuario
-      const userResponse = await axios.get('http://localhost:3001/api/usuario/me');
-      
-      // 5. Actualizar estado global
-      setIsAuthenticated(true);
-      setUser(userResponse.data);
-      
-      // 6. Redirigir al home
-      navigate('/');
-      
-    } catch (err) {
-      // Manejo de errores
-      const errorMessage = err.response?.data?.message || 
-                         err.message || 
-                         'Error al iniciar sesión';
-      setError(errorMessage);
-      
-      // Limpiar credenciales en caso de error
-      if (err.response?.status === 401) {
-        setCredentials({
-          nombre_usuario: '',
-          contrasena: ''
+      if (response.data.success) {
+        setAuthState({
+          isAuthenticated: true,
+          user: response.data.user,
+          isLoading: false
         });
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        setIsAuthenticated(true);
+        setUser(response.data.user);
+        navigate('/');
+      } else {
+        setError(response.data.error || 'Error al iniciar sesión');
       }
+    } catch (err) {
+      let errorMessage = 'Error al iniciar sesión';
+      
+      if (err.response) {
+        if (err.response.status === 401) {
+          errorMessage = 'Credenciales incorrectas';
+        } else if (err.response.data?.error) {
+          errorMessage = err.response.data.error;
+        }
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
+      
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
   };
 
+
   return (
     <div className="auth-container">
       <h2>Iniciar Sesión</h2>
-      {error && (
-        <div className="error-message">
-          {error}
-        </div>
-      )}
+      {error && <div className="error-message">{error}</div>}
       
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -82,6 +75,7 @@ export default function Login({ setIsAuthenticated, setUser }) {
             onChange={handleChange}
             required
             disabled={loading}
+            autoComplete="username"
           />
         </div>
         
@@ -95,26 +89,38 @@ export default function Login({ setIsAuthenticated, setUser }) {
             onChange={handleChange}
             required
             disabled={loading}
+            autoComplete="current-password"
           />
         </div>
         
         <button 
           type="submit" 
           disabled={loading}
-          className={loading ? 'loading' : ''}
+          className={`auth-button ${loading ? 'loading' : ''}`}
         >
-          {loading ? 'Procesando...' : 'Ingresar'}
+          {loading ? (
+            <>
+              <span className="spinner"></span>
+              <span>Verificando...</span>
+            </>
+          ) : (
+            'Ingresar'
+          )}
         </button>
       </form>
       
       <p className="auth-footer">
         ¿No tienes cuenta?{' '}
-        <a href="/register" onClick={(e) => {
-          e.preventDefault();
-          navigate('/register');
-        }}>
+        <button 
+          className="text-button"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate('/register');
+          }}
+          disabled={loading}
+        >
           Regístrate aquí
-        </a>
+        </button>
       </p>
     </div>
   );
