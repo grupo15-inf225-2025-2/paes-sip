@@ -25,7 +25,6 @@ Nuestro proyecto está siendo desarrollado con un frontend en [React/Vite](https
 ### Prerrequisitos
 - [Node.js](https://nodejs.org/) (v18+ recomendado) Hay que instalarlo en la pagina web o por comando, favor de seguir instrucciones de la pagina.
 - [Docker](https://www.docker.com/products/docker-desktop/) Instalar y configurarlo si es necesario con la integración para WSL2
-- [pgAdmin](https://www.pgadmin.org) Se requiere para la gestión de la base de datos.
 
 ### Instalación
 1. Clona el repositorio
