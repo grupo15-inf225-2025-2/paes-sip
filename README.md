@@ -1,9 +1,9 @@
 # GRUPO 12
-Repositorio del Proyecto Grupo 12 Profesor Ricardo Salas Paralelo 201
+Repositorio del Proyecto Grupo 15 Profesor Ricardo Salas Paralelo 200
 
 * Martina Madrid - 202230533-9
-* Nicolás Muñoz - 202104641-0
-* Claudio Carreño - 202173562-3
+* Sebastian Romero - 202330506-4
+* Sebastian Torres - 202330566-9
 * Sebastián Vicuña - 202230561-4
 * **Tutor** BENJAMIN NICOLAS DAZA JIMENEZ
 
