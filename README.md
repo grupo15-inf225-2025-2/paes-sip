@@ -1,14 +1,12 @@
-# GRUPO 12
-Repositorio del Proyecto Grupo 12 Profesor Ricardo Salas Paralelo 201
+# GRUPO 15
+Repositorio del Proyecto Grupo 15 Profesor Ricardo Salas Paralelo 200
 
 * Martina Madrid - 202230533-9
-* Nicolás Muñoz - 202104641-0
-* Claudio Carreño - 202173562-3
+* Sebastian Romero - 202030506-4
+* Sebastian Torres - 202330566-9
 * Sebastián Vicuña - 202230561-4
-* **Tutor** FELIPE IGNACIO FERNÁNDEZ AGUILAR
+* **Tutor** BENJAMIN NICOLAS DAZA JIMENEZ
 
-## Wiki
-* Puede acceder a la Wiki mediante el siguiente [enlace](https://github.com/doxter6/GRUPO12-2025-PROYINF/wiki)
 
   
 ## Videos
@@ -25,20 +23,19 @@ Nuestro proyecto está siendo desarrollado con un frontend en [React/Vite](https
 ### Prerrequisitos
 - [Node.js](https://nodejs.org/) (v18+ recomendado) Hay que instalarlo en la pagina web o por comando, favor de seguir instrucciones de la pagina.
 - [Docker](https://www.docker.com/products/docker-desktop/) Instalar y configurarlo si es necesario con la integración para WSL2
-- [pgAdmin](https://www.pgadmin.org) Se requiere para la gestión de la base de datos.
 
 ### Instalación
 1. Clona el repositorio
     ```bash
-   git clone https://github.com/doxter6/GRUPO12-2025-PROYINF
+   git clone https://github.com/grupo15-inf225-2025-2/paes-sip.git
 
 2. Ubica la carpeta en la terminal
     ```bash
-   cd ./GRUPO12-2025-PROYINF/proyecto
+   cd ./paes-sip/proyecto
 
 3. Instala las dependencias necesarias para cliente
    ```bash
-   cd ./GRUPO12-2025-PROYINF/proyecto/cliente
+   cd ./paes-sip/proyecto/cliente
    npm install
 
 4. Construir la imagen de docker
