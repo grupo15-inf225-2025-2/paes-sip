@@ -5,7 +5,7 @@ Repositorio del Proyecto Grupo 12 Profesor Ricardo Salas Paralelo 201
 * Nicolás Muñoz - 202104641-0
 * Claudio Carreño - 202173562-3
 * Sebastián Vicuña - 202230561-4
-* **Tutor** FELIPE IGNACIO FERNÁNDEZ AGUILAR
+* **Tutor** BENJAMIN NICOLAS DAZA JIMENEZ
 
 ## Wiki
 * Puede acceder a la Wiki mediante el siguiente [enlace](https://github.com/doxter6/GRUPO12-2025-PROYINF/wiki)
