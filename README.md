@@ -7,7 +7,9 @@ Repositorio del Proyecto Grupo 15 Profesor Ricardo Salas Paralelo 200
 * Sebastián Vicuña - 202230561-4
 * **Tutor** BENJAMIN NICOLAS DAZA JIMENEZ
 
+## Poyecto Base
 
+* El proyecto que ocuparemos como base corresponde al trabajo del antiguo grupo 12 del ramo INF236 en el semestre 2025-1, del cual dos de sus integrantes (Martina Madrid y Sebastián Vicuña) se encuentran actualmente en este grupo.
   
 ## Videos
 * Video presentación cliente [aqui](https://usmcl-my.sharepoint.com/:v:/g/personal/claudio_carreno_usm_cl/EQ1_1EaAYddAkW_vgU2wwFkBc2UOmd4ZwCz0bDELah-S9Q?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=rruca9)
