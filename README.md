@@ -7,6 +7,10 @@ Repositorio del Proyecto Grupo 15 Profesor Ricardo Salas Paralelo 200
 * Sebastián Vicuña - 202230561-4
 * **Tutor** BENJAMIN NICOLAS DAZA JIMENEZ
 
+## Wiki
+* Puede acceder a la Wiki mediante el siguiente [enlace](https://github.com/grupo15-inf225-2025-2/paes-sip/wiki)
+
+
 ## Poyecto Base
 
 * El proyecto que ocuparemos como base corresponde al trabajo del antiguo grupo 12 del ramo INF236 en el semestre 2025-1, del cual dos de sus integrantes (Martina Madrid y Sebastián Vicuña) se encuentran actualmente en este grupo.
