@@ -11,6 +11,7 @@ export default function CreadorPreguntas() {
     pregunta: '',
     puntos: 1,
     correcta: null,
+    libre: false,
     etiquetas: []
   });
   
@@ -28,6 +29,7 @@ export default function CreadorPreguntas() {
   // Listas para los selectores
   const asignaturas = ['Matemáticas', 'Lenguaje', 'Ciencias', 'Historia'];
   const habilidades = ['Despejar X', 'Comprensión', 'Análisis', 'Cálculo'];
+  const libres = ['No', 'Si'];
 
   const handleOpcionChange = (id, value) => {
     setOpciones(opciones.map(opt => 
@@ -56,6 +58,10 @@ export default function CreadorPreguntas() {
       return;
     }
 
+    if (pregunta.libre == 'Si'){
+      pregunta.libre = true;
+    }
+
     const preguntaData = {
       ...pregunta,
       opciones: opciones.map(o => o.texto),
@@ -79,6 +85,7 @@ export default function CreadorPreguntas() {
           habilidad: '',
           pregunta: '',
           puntos: 1,
+          libre: false,
           correcta: null,
           etiquetas: []
         });
@@ -120,6 +127,19 @@ export default function CreadorPreguntas() {
             >
               {asignaturas.map(asig => (
                 <option key={asig} value={asig}>{asig}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>Libre:</label>
+            <select
+              name="libre"
+              value={pregunta.libre}
+              onChange={handleInputChange}
+            >
+              {libres.map(libr => (
+                <option key={libr} value={libr}>{libr}</option>
               ))}
             </select>
           </div>

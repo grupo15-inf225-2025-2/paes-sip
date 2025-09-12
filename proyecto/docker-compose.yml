@@ -13,7 +13,7 @@ services:
   backend:
     build:
       context: ./server
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
     ports:
       - "${BACKEND_PORT_HOST}:3001"
     environment:
@@ -24,7 +24,7 @@ services:
   frontend:
     build:
       context: ./cliente
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
     ports:
       - "${APP_PORT_HOST}:5173"
     depends_on:
