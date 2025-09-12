@@ -31,7 +31,7 @@ function ResultadosEst() {
 
     return (
     <>
-
+    <Header/>
     <div className="resultados-container">
         <h1>Resumen de Rendimiento</h1>
 

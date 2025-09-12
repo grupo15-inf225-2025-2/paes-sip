@@ -101,6 +101,7 @@ export default function CreadorPreguntas() {
 
   return (
     <>
+      <Header/>
       <div className="app-container">
         <h1>Administrador de Preguntas</h1>
         

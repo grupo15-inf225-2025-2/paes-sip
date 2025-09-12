@@ -12,18 +12,14 @@ const Ensayo = sequelize.define('Ensayo', {
     allowNull: false
   },
   descripcion: {
-    type: DataTypes.TEXT
-  },
-  puntos: {
-    type: DataTypes.INTEGER,
-    allowNull: false
+    type: DataTypes.TEXT,
+    allowNull: true
   },
   preguntas: {
-    type: DataTypes.JSONB,
-    allowNull: false
+    type: DataTypes.JSONB,    // <-- JSONB en lugar de JSON o ARRAY
+    allowNull: false,
+    defaultValue: []
   }
-}, {
-  timestamps: true
 });
 
 export default Ensayo;
