@@ -1,0 +1,152 @@
+.resultados-container {
+    padding: 40px;
+    font-family: Tahoma;
+    color: #1a1a1a;
+    background-color: #e2e2e2;
+    margin-top: 40px;
+}
+
+.contenido-principal {
+    display: flex;
+    gap: 20px;
+}
+
+.fondo {
+    flex: 0 0 40%;
+    background-color: #3664e3;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #1b1b1b;
+}
+
+.lista-ensayos {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ensayo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    background: #ffffffd2;
+    border: 1px solid #555555;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.ensayo-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.ensayo-info .fecha {
+    font-size: 0.85em;
+    color: #000000;
+    margin-top: 4px;
+}
+
+.puntaje {
+    font-weight: bold;
+    color: black;
+    align-self: center;
+}
+
+.columna-derecha {
+  flex: 1;
+}
+
+.resumen-destacado {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    color: black;
+}
+
+.tarjeta {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.tarjeta .l3 {
+    font-family: 'Tahoma', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    color: rgba(0, 0, 0, 0.877);
+}
+
+.tarjeta .l4 {
+    font-family: 'Tahoma';
+    font-weight: bold;
+    font-size: 17px;
+    color: rgba(0, 0, 0, 0.877);
+}
+
+.mejor {
+    border-color: #00c853;
+    background-color: #e8f5e9;
+}
+
+.peor {
+    border-color: #d32f2f;
+    background-color: #ffebee;
+}
+
+.tarjeta span {
+    display: block;
+    font-size: 1.8em;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.tabla-resultados table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-resultados th,
+.tabla-resultados td {
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+
+.sin-eval {
+    color: #000000dc;
+    font-style: italic;
+}
+
+/* ===== MODO OSCURO ===== */
+@media (prefers-color-scheme: dark) {
+    .resultados-container {
+        color: #1a1a1a;
+        background-color: #4b4b4b;
+    }
+
+    .fondo {
+        background-color: rgba(49, 144, 199, 0.61);
+        border: 1px solid #1b1b1b;
+    }
+
+    .ensayo-item {
+        background: #ffffff71;
+        border: 1px solid #555555;
+    }
+
+    .mejor {
+        border-color: #005021;
+        background-color: #a4ffac4d;
+    }
+
+    .peor {
+        border-color: #680707;
+        background-color: #ffafbb8c;
+    }
+}

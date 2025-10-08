@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: myapp
+    ports:
+      - "${DB_PORT_HOST}:${DB_PORT_CONTAINER}"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "${BACKEND_PORT_HOST}:3001"
+    environment:
+      DATABASE_URL: "postgres://${DB_USER}:${DB_PASSWORD}@db:${DB_PORT_CONTAINER}/myapp"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./cliente
+      dockerfile: Dockerfile
+    ports:
+      - "${APP_PORT_HOST}:5173"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

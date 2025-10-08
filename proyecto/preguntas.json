@@ -1,0 +1,102 @@
+[
+  {
+    "pregunta": "¿Cuál es el antónimo de la palabra 'valiente'?",
+    "opciones": ["miedoso", "audaz", "atrevido", "valeroso"],
+    "correcta": 0,
+    "asignatura": "Lenguaje",
+    "tematica": "Antónimos",
+    "habilidad": "Vocabulario",
+    "puntos": 1,
+    "etiquetas": ["antónimos", "vocabulario"]
+  },
+  {
+    "pregunta": "¿Qué tipo de texto busca convencer al lector?",
+    "opciones": ["Narrativo", "Descriptivo", "Expositivo", "Argumentativo"],
+    "correcta": 3,
+    "asignatura": "Lenguaje",
+    "tematica": "Tipos de texto",
+    "habilidad": "Identificación",
+    "puntos": 1,
+    "etiquetas": ["texto", "funciones", "argumentativo"]
+  },
+  {
+    "pregunta": "¿Cuál es el sujeto en la oración: 'El perro duerme en el sofá'?",
+    "opciones": ["El sofá", "duerme", "El perro", "en el sofá"],
+    "correcta": 2,
+    "asignatura": "Lenguaje",
+    "tematica": "Estructura de la oración",
+    "habilidad": "Análisis sintáctico",
+    "puntos": 2,
+    "etiquetas": ["sujeto", "oración"]
+  },
+  {
+    "pregunta": "¿Qué figura literaria está presente en 'te lloran los ojos del alma'?",
+    "opciones": ["Hipérbole", "Metáfora", "Personificación", "Símil"],
+    "correcta": 2,
+    "asignatura": "Lenguaje",
+    "tematica": "Figuras literarias",
+    "habilidad": "Interpretación",
+    "puntos": 2,
+    "etiquetas": ["figuras", "personificación"]
+  },
+  {
+    "pregunta": "¿Qué palabra está mal escrita?",
+    "opciones": ["construccion", "educación", "acción", "comisión"],
+    "correcta": 0,
+    "asignatura": "Lenguaje",
+    "tematica": "Ortografía",
+    "habilidad": "Reconocimiento",
+    "puntos": 1,
+    "etiquetas": ["ortografía"]
+  },
+  {
+    "pregunta": "¿Cuál es el significado más adecuado de 'ambiguo'?",
+    "opciones": ["claro", "preciso", "dudoso", "evidente"],
+    "correcta": 2,
+    "asignatura": "Lenguaje",
+    "tematica": "Vocabulario contextual",
+    "habilidad": "Comprensión",
+    "puntos": 1,
+    "etiquetas": ["vocabulario", "contexto"]
+  },
+  {
+    "pregunta": "¿Qué elemento no pertenece a la narrativa?",
+    "opciones": ["Personajes", "Versos", "Ambiente", "Trama"],
+    "correcta": 1,
+    "asignatura": "Lenguaje",
+    "tematica": "Géneros literarios",
+    "habilidad": "Identificación",
+    "puntos": 1,
+    "etiquetas": ["narración", "verso"]
+  },
+  {
+    "pregunta": "¿Cuál es una característica del texto expositivo?",
+    "opciones": ["Usa rima", "Presenta argumentos", "Explica de forma clara", "Busca entretener"],
+    "correcta": 2,
+    "asignatura": "Lenguaje",
+    "tematica": "Textos expositivos",
+    "habilidad": "Reconocimiento",
+    "puntos": 1,
+    "etiquetas": ["texto", "expositivo"]
+  },
+  {
+    "pregunta": "¿Qué pronombre corresponde en: '___ irá al cine contigo'?",
+    "opciones": ["Yo", "Tú", "Él", "Nosotros"],
+    "correcta": 2,
+    "asignatura": "Lenguaje",
+    "tematica": "Pronombres personales",
+    "habilidad": "Gramática",
+    "puntos": 1,
+    "etiquetas": ["pronombres", "gramática"]
+  },
+  {
+    "pregunta": "¿Qué conector sirve para oponer ideas?",
+    "opciones": ["Además", "Sin embargo", "Por eso", "Luego"],
+    "correcta": 1,
+    "asignatura": "Lenguaje",
+    "tematica": "Conectores",
+    "habilidad": "Cohesión textual",
+    "puntos": 1,
+    "etiquetas": ["conectores", "coherencia"]
+  }
+]
