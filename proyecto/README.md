@@ -1,4 +1,5 @@
 # Estructura del proyecto
+
 ```bash
 ├── .dockerignore
 ├── .gitignore
@@ -12,22 +13,22 @@
 │   ├── src                          ← Paginas de la aplicación
 │   └── vite.config.js
 ├── dockerfile                       ← Configuración de Docker
-├── makefile                         ← Tareas: build, run, run-db, clean
 └── servidor
     ├── controllers
     ├── models
     └── routes
 ```
 
+## Setup
+
+- Duplicar el archivo `.env.example` con el nombre `.env`.
+- (Opcional) Cambiar las variables de entorno dentro de `.env` según sus preferencias.
+
 ## Comandos útiles
 
-| Comando     | Descripción                              |
-|-------------|------------------------------------------|
-| `make build`| Construye la imagen Docker               |
-| `make run`  | Construye la imagen y arranca el contenedor en segundo plano con hot-reload              |
-| `make stop`      | Detiene el contenedor sin eliminarlo                                        |
-| `make run-db`    | Ejecuta un contenedor con PostgreSQL                                        |
-| `make clean-app` | Elimina el contenedor de la aplicación                                      |
-| `make clean-db`  | Elimina el contenedor de la base de datos                                   |
-| `make clean`     | Elimina todos los contenedores (app y base de datos)                        |
-| `make help`      | Muestra todos los comandos disponibles                            |
+_(Estando en la ruta paes-sip/proyecto/)_
+
+| Comando                | Descripción                                                             |
+| ---------------------- | ----------------------------------------------------------------------- |
+| `docker compose up -d` | Crea los contenedores para la web, la api y la base de datos.           |
+| `docker compose down`  | Detiene todos los contenedores de este proyecto que estén en ejecución. |
