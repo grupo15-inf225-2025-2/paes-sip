@@ -36,6 +36,11 @@ const Pregunta = sequelize.define('Pregunta', {
     allowNull: false,
     defaultValue: 1
   },
+  libre: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
+  },
   etiquetas: {
     type: DataTypes.ARRAY(DataTypes.STRING),
     defaultValue: []

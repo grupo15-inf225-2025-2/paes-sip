@@ -3,9 +3,9 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon --experimental-specifier-resolution=node src/index.js",
-    "start": "node --experimental-specifier-resolution=node src/index.js"
-  },
+  "dev": "nodemon --experimental-specifier-resolution=node src/index.js",
+  "start": "node --experimental-specifier-resolution=node src/index.js"
+},
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",

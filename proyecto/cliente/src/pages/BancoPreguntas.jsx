@@ -174,6 +174,7 @@ export default function BancoPreguntas() {
                 <div key={pregunta.id} className="question-card">
                   <div className="question-header">
                     <span className="subject-badge">{pregunta.asignatura}</span>
+                    <span className="points-badge">{(pregunta.libre === true) ? 'Libre' : 'No libre'}</span>
                     <span className="points-badge">{pregunta.puntos} pts</span>
                   </div>
                   {pregunta.pregunta}
