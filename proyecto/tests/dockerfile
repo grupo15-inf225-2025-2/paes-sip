@@ -1,0 +1,9 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN pip install requests==2.32.5
+
+COPY . .
+
+CMD ["python", "-m", "unittest", "discover"]

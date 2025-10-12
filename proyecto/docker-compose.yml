@@ -20,6 +20,12 @@ services:
       DATABASE_URL: "postgres://${DB_USER}:${DB_PASSWORD}@db:${DB_PORT_CONTAINER}/myapp"
     depends_on:
       - db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/api/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
 
   frontend:
     build:
@@ -30,5 +36,12 @@ services:
     depends_on:
       - backend
 
+  unittest:
+    build:
+      context: ./tests
+      dockerfile: Dockerfile
+    depends_on:
+      backend:
+        condition: service_healthy
 volumes:
   postgres_data:
