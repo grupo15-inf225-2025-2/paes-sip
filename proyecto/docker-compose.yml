@@ -4,9 +4,10 @@ services:
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: myapp
+      POSTGRES_DB: ${DB_NAME}
+    hostname: ${DB_HOSTNAME}
     ports:
-      - "${DB_PORT_HOST}:${DB_PORT_CONTAINER}"
+      - "${DB_PORT_HOST}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -14,10 +15,14 @@ services:
     build:
       context: ./server
       dockerfile: dockerfile
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_HOSTNAME: ${DB_HOSTNAME}
+      DB_PORT: 5432
     ports:
       - "${BACKEND_PORT_HOST}:3001"
-    environment:
-      DATABASE_URL: "postgres://${DB_USER}:${DB_PASSWORD}@db:${DB_PORT_CONTAINER}/myapp"
     depends_on:
       - db
     healthcheck:
