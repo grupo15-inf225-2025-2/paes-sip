@@ -51,7 +51,7 @@ export default function BancoPreguntas() {
           (filters.tematica === '' || q.tematica === filters.tematica) &&
           (filters.habilidad === '' || q.habilidad === filters.habilidad) &&
           (filters.etiqueta === '' ||
-            (q.etiquetas && q.etiquetas.some(etq => etq.includes(filters.etiqueta.toLowerCase()))))
+            ((q.etiquetas ?? []).some(etq => etq.includes(filters.etiqueta.toLowerCase()))))
         );
       });
       setFilteredQuestions(filtered);
@@ -179,7 +179,7 @@ export default function BancoPreguntas() {
                   </div>
                   {pregunta.pregunta}
                   <ul className="options-list">
-                    {pregunta.opciones.map((opcion, index) => (
+                    {Object.values(pregunta.opciones ?? {}).map((opcion, index) => (
                       <li
                         key={index}
                         className={index === pregunta.correcta ? 'correct-option' : ''}
@@ -239,7 +239,7 @@ export default function BancoPreguntas() {
                       </div>
                       {q.pregunta}
                       <ul className="options-list">
-                        {q.opciones.map((opcion, index) => (
+                        {Object.values(q.opciones ?? {}).map((opcion, index) =>(
                           <li
                             key={index}
                             className={index === q.correcta ? 'correct-option' : ''}

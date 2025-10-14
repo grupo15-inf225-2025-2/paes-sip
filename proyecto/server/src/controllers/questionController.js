@@ -9,6 +9,21 @@ export const getQuestions = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+// Método GET por ID (Obtener una pregunta específica)
+export const getQuestionById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const pregunta = await Pregunta.findByPk(id);
+
+    if (pregunta) {
+      res.json(pregunta);
+    } else {
+      res.status(404).json({ error: 'Pregunta no encontrada' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 // Método POST
 export const createQuestion = async (req, res) => {
