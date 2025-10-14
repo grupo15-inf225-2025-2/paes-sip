@@ -7,7 +7,8 @@ class TestEndpointEnsayos(unittest.TestCase):
 	def setUpClass(cls):
 		cls.endpointUrl = "http://backend:3001/api/ensayo"
 		cls.ensayo_valido = {
-			"titulo": "soy_un_titulo",
+			"titulo": "Ensayo Diagnóstico",
+			"descripcion": "...",
 			"preguntas": []
 		}
 
