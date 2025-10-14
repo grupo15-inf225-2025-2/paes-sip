@@ -1,52 +1,90 @@
+
 services:
+ 
   db:
     image: postgres:15
+    container_name: proyecto-db-1
+    env_file:
+      - .env
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
+
     hostname: ${DB_HOSTNAME}
+
     ports:
       - "${DB_PORT_HOST}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
 
   backend:
     build:
       context: ./server
       dockerfile: dockerfile
+
     environment:
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
       DB_HOSTNAME: ${DB_HOSTNAME}
       DB_PORT: 5432
+
+    container_name: proyecto-backend-1
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: "postgres://${DB_USER}:${DB_PASSWORD}@db:${DB_PORT_CONTAINER}/${DB_NAME}"
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: db
+      DB_PORT: ${DB_PORT_CONTAINER}
+      DB_NAME: ${DB_NAME}
+      PORT: 3001
+
     ports:
       - "${BACKEND_PORT_HOST}:3001"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3001/api/health"]
-      interval: 5s
-      timeout: 3s
+      interval: 10s
+      timeout: 5s
       retries: 5
-      start_period: 5s
+      start_period: 10s
+    restart: always
 
+ 
   frontend:
     build:
       context: ./cliente
       dockerfile: dockerfile
+    container_name: proyecto-frontend-1
+    env_file:
+      - .env
     ports:
       - "${APP_PORT_HOST}:5173"
     depends_on:
       - backend
+    restart: always
 
+ 
   unittest:
     build:
       context: ./tests
       dockerfile: Dockerfile
+    container_name: proyecto-unittest-1
     depends_on:
       backend:
         condition: service_healthy
+
+
 volumes:
   postgres_data:

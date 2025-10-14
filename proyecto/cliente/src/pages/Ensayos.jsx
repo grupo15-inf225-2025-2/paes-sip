@@ -192,10 +192,40 @@ export default function Ensayos() {
     };
 
     // Función para finalizar el ensayo
-    const finishExam = () => {
+    
+    const finishExam = async () => {
         setExamFinished(true);
         setTimerActive(false);
+
+    
+        const { correctAnswers, totalScore, totalQuestions } = calculateScore();
+
+    // Crear el objeto con la información del intento
+        const intento = {
+            materia: selectedSubject,
+            respuestas: userAnswers,
+            puntaje: totalScore,
+            correctas: correctAnswers,
+            total: totalQuestions
+        };
+
+        console.log("🧩 Enviando intento al backend:", intento);
+
+        try {
+            const response = await fetch("http://localhost:3001/api/resultados/guardar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(intento)
+            });
+
+            const data = await response.json();
+            console.log("✅ Resultado guardado correctamente:", data);
+        } catch (error) {
+            console.error("❌ Error al guardar resultado:", error);
+        }   
     };
+
+
 
     // Función para reiniciar
     const resetExam = () => {
