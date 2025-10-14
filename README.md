@@ -44,12 +44,12 @@ Nuestro proyecto está siendo desarrollado con un frontend en [React/Vite](https
    cd ./paes-sip/proyecto/cliente
    npm install
 
-4. Construir la imagen de docker
+4. Crea los contenedores para la web, la api y la base de datos.
    ```bash
-   make build
+   docker compose up -d
    
-5. Levanta frontend + hot-reload
+5. Detiene todos los contenedores de este proyecto que estén en ejecución.
    ```bash
-   make run
+   docker compose down
    
 6. En el navegador poner el enlace que dara la terminal
