@@ -1,5 +1,4 @@
-import Ensayo   from '../models/testModel.js';
-import Pregunta from '../models/questionModel.js';
+import {Pregunta, Ensayo} from '../models/index.js';
 
 // GET todos
 export const getTests = async (_, res) => {

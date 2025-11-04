@@ -1,4 +1,4 @@
-import Pregunta from '../models/questionModel.js';
+import { Pregunta } from '../models/index.js';
 
 // Método GET
 export const getQuestions = async (req, res) => {
