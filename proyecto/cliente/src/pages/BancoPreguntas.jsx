@@ -51,7 +51,7 @@ export default function BancoPreguntas() {
           (filters.tematica === '' || q.tematica === filters.tematica) &&
           (filters.habilidad === '' || q.habilidad === filters.habilidad) &&
           (filters.etiqueta === '' ||
-            (q.etiquetas && q.etiquetas.some(etq => etq.includes(filters.etiqueta.toLowerCase()))))
+            (q.etiquetas?.some(etq => etq.includes(filters.etiqueta.toLowerCase()))))
         );
       });
       setFilteredQuestions(filtered);
