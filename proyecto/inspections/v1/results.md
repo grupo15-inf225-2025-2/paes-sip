@@ -1,6 +1,6 @@
 # Inspección 1 (commit [602d271e](https://github.com/grupo15-inf225-2025-2/paes-sip/commit/602d271e1914c7163f88d3d176258f963317c905))
 
-## Total de issues: 67
+## Total de issues: 62
 
 ![alt text](overall.png)
 
