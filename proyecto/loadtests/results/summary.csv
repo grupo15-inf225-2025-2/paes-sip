@@ -1,0 +1,3 @@
+Label,# Samples,Average,Min,Max,Std. Dev.,Error %,Throughput,Received KB/sec,Sent KB/sec,Avg. Bytes
+GET /api/ensayo,3000,2,1,30,2.00,0.000%,27.12257,38.43,3.42,1451.0
+TOTAL,3000,2,1,30,2.00,0.000%,27.12257,38.43,3.42,1451.0
